@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: #ff0000;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+    <button type="button" onclick="validateForm()">Register</button>
+
+    <div id="errorMessages" class="error-message"></div>
+  </form>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+
+      var errorMessages = '';
+
+      if (username.trim() === '') {
+        errorMessages += 'Username is required.<br>';
+      }
+
+      if (email.trim() === '' || !email.includes('@')) {
+        errorMessages += 'Invalid email address.<br>';
+      }
+
+      if (password.trim() === '' || password.length < 6) {
+        errorMessages += 'Password must be at least 6 characters long.<br>';
+      }
+
+      if (confirmPassword.trim() === '' || confirmPassword !== password) {
+        errorMessages += 'Passwords do not match.<br>';
+      }
+
+      var errorDiv = document.getElementById('errorMessages');
+      errorDiv.innerHTML = errorMessages;
+
+      if (errorMessages === '') {
+        // Form is valid, you can submit the data or take other actions here
+        alert('Registration successful!');
+      }
+    }
+  </script>
+</body>
+</html>
